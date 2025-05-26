@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Live Stream</title>
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      background-color: black;
+      color: white;
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #stream {
+      width: 100vw;
+      height: 100vh;
+      border: none;
+      display: none;
+    }
+    #offline {
+      text-align: center;
+      font-size: 2em;
+    }
+  </style>
+</head>
+<body>
+  <iframe id="stream" allow="autoplay; fullscreen" allowfullscreen></iframe>
+  <div id="offline">Checking for live stream...</div>
+
+  <script>
+    const CHANNEL_ID = 'UC3nqw1kd4AK1q9e68YUoLDQ';
+    const IFRAME = document.getElementById('stream');
+    const OFFLINE = document.getElementById('offline');
+
+    function loadStream() {
+      const url = `https://www.youtube.com/embed/live_stream?channel=${CHANNEL_ID}&autoplay=1&controls=0&fs=1`;
+      IFRAME.src = url;
+      IFRAME.style.display = 'block';
+      OFFLINE.style.display = 'none';
+    }
+
+    // Try to load stream
+    loadStream();
+
+    // Reload page every 5 minutes
+    setTimeout(() => location.reload(), 5 * 60 * 1000);
+  </script>
+</body>
+</html>
